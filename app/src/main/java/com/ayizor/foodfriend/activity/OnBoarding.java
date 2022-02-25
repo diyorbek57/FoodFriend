@@ -67,16 +67,23 @@ public class OnBoarding extends AppCompatActivity {
     }
 
     public void skip(View view) {
+        SharedPreferences sharedpreferences = getSharedPreferences("ONLYONCE", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putBoolean("ONLYONCE", true);
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
     public void next(View view) {
         viewPager.setCurrentItem(currentPos + 1);
+
         if (next.getText().toString().contains("Done")) {
             SharedPreferences sharedpreferences = getSharedPreferences("ONLYONCE", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putBoolean("ONLYONCE", true);
+            Intent intent = new Intent(OnBoarding.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -120,6 +127,7 @@ public class OnBoarding extends AppCompatActivity {
                 skip.setVisibility(View.VISIBLE);
             } else {
                 next.setText(R.string.done);
+                ;
                 skip.setVisibility(View.INVISIBLE);
             }
 
@@ -138,7 +146,7 @@ public class OnBoarding extends AppCompatActivity {
 
     public void onlyOnce() {
         SharedPreferences sharedpreferences = getSharedPreferences("ONLYONCE", Context.MODE_PRIVATE);
-        Boolean onlyonce = sharedpreferences.getBoolean("ONLYONCE", true);
+        boolean onlyonce = sharedpreferences.getBoolean("ONLYONCE", false);
 
         if (onlyonce) {
             Intent intent = new Intent(OnBoarding.this, MainActivity.class);
