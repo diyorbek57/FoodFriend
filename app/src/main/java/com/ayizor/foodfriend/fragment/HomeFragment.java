@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ayizor.foodfriend.R;
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment {
         categoryRecycler = view.findViewById(R.id.home_category_recycler);
         mainRecycler = view.findViewById(R.id.home_recycler_view);
         mainRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        categoryRecycler.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        categoryRecycler.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         refreshAdapters(categoryList(), mainList());
     }
 

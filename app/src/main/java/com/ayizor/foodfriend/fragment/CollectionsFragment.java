@@ -32,7 +32,7 @@ public class CollectionsFragment extends Fragment {
     }
 
     private void inits(View view) {
-        recycler = view.findViewById(R.id.home_category_recycler);
+        recycler = view.findViewById(R.id.rv_collections);
         recycler.setLayoutManager(new GridLayoutManager(getContext(), 1));
         refreshAdapters(categoryList());
     }
