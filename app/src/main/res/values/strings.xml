@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FoodFriend</string>
+    <string name="best_restaurants">Best Restaurants</string>
+    <string name="saved_listings">Saved Listings</string>
+    <string name="chat">Chat</string>
+    <string name="get_nitified">Get Notified</string>
+    <string name="chat_desc">Communicate with your friend and vendors in real-time</string>
+    <string name="saved_listings_desc">Save your favorite listings to come back to them letter</string>
+    <string name="best_restaurants_desc">You can find over 1000+ restaurants</string>
+    <string name="get_nitified_desc">Stay on top of your game with real time push notifications</string>
+    <string name="let_started">Let Started</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="done">Done</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="category">Category</string>
+</resources>
