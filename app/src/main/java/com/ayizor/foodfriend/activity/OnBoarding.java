@@ -1,6 +1,8 @@
 package com.ayizor.foodfriend.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -32,6 +34,7 @@ public class OnBoarding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_on_boarding);
+        onlyOnce();
         inits();
 
     }
@@ -70,6 +73,11 @@ public class OnBoarding extends AppCompatActivity {
 
     public void next(View view) {
         viewPager.setCurrentItem(currentPos + 1);
+        if (next.getText().toString().contains("Done")) {
+            SharedPreferences sharedpreferences = getSharedPreferences("ONLYONCE", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putBoolean("ONLYONCE", true);
+        }
     }
 
     private void addDots(int position) {
@@ -128,4 +136,14 @@ public class OnBoarding extends AppCompatActivity {
         }
     };
 
+    public void onlyOnce() {
+        SharedPreferences sharedpreferences = getSharedPreferences("ONLYONCE", Context.MODE_PRIVATE);
+        Boolean onlyonce = sharedpreferences.getBoolean("ONLYONCE", true);
+
+        if (onlyonce) {
+            Intent intent = new Intent(OnBoarding.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 }
