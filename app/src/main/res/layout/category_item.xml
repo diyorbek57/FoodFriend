@@ -18,6 +18,8 @@
         android:orientation="vertical">
 
         <ImageView
+
+            android:scaleType="centerCrop"
             android:id="@+id/iv_category_image"
             android:layout_width="190dp"
             android:layout_height="100dp"
