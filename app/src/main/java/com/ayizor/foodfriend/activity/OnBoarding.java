@@ -34,8 +34,15 @@ public class OnBoarding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_on_boarding);
-        onlyOnce();
-        inits();
+
+        if (onlyOnce()) {
+            Intent intent = new Intent(OnBoarding.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }else {
+            inits();
+        }
+
 
     }
 
@@ -70,6 +77,7 @@ public class OnBoarding extends AppCompatActivity {
         SharedPreferences sharedpreferences = getSharedPreferences("ONLYONCE", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putBoolean("ONLYONCE", true);
+        editor.apply();
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
@@ -80,7 +88,9 @@ public class OnBoarding extends AppCompatActivity {
         if (next.getText().toString().contains("Done")) {
             SharedPreferences sharedpreferences = getSharedPreferences("ONLYONCE", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
+
             editor.putBoolean("ONLYONCE", true);
+            editor.apply();
             Intent intent = new Intent(OnBoarding.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -144,14 +154,10 @@ public class OnBoarding extends AppCompatActivity {
         }
     };
 
-    public void onlyOnce() {
+    public boolean onlyOnce() {
         SharedPreferences sharedpreferences = getSharedPreferences("ONLYONCE", Context.MODE_PRIVATE);
         boolean onlyonce = sharedpreferences.getBoolean("ONLYONCE", false);
 
-        if (onlyonce) {
-            Intent intent = new Intent(OnBoarding.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+        return onlyonce;
     }
 }
